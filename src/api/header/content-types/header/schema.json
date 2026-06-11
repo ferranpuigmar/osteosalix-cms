@@ -1,0 +1,37 @@
+{
+  "kind": "singleType",
+  "collectionName": "headers",
+  "info": {
+    "singularName": "header",
+    "pluralName": "headers",
+    "displayName": "Header",
+    "description": "Logo, texto del logo y número de WhatsApp del header"
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": ["images"]
+    },
+    "logoTextStart": {
+      "type": "string",
+      "required": true
+    },
+    "logoTextEnd": {
+      "type": "string",
+      "required": true
+    },
+    "whatsappNumber": {
+      "type": "string",
+      "required": true
+    },
+    "navigation": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::navigation.navigation",
+      "required": true
+    }
+  }
+}

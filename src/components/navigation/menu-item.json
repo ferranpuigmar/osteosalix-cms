@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_navigation_menu_items",
+  "info": {
+    "displayName": "MenuItem",
+    "icon": "bulletList",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_navigation_menu_groups",
+  "info": {
+    "displayName": "MenuGroup",
+    "icon": "folder",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "link": {
+      "type": "string"
+    },
+    "submenuItem": {
+      "type": "component",
+      "repeatable": true,
+      "component": "navigation.menu-item"
+    }
+  }
+}
