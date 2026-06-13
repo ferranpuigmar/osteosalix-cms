@@ -1,6 +1,7 @@
 import { Core } from '@strapi/strapi';
 import { seed as seedNavigation } from './seed-entities/navigation';
 import { seed as seedHeader } from './seed-entities/header';
+import { seed as seedHome } from './seed-entities/home';
 import { seed as seedToken } from './token';
 
 export async function seed(strapi: Core.Strapi): Promise<void> {
@@ -9,6 +10,9 @@ export async function seed(strapi: Core.Strapi): Promise<void> {
 
   const header = await seedHeader(strapi, { navigationDocumentId: nav.documentId! });
   console.log(`[seed] header — ${header.skipped ? 'already exists, skipped' : 'created'}`);
+
+  const home = await seedHome(strapi);
+  console.log(`[seed] home — ${home.skipped ? 'already exists, skipped' : 'created'}`);
 
   const token = await seedToken(strapi);
   console.log(`[seed] token — ${token.skipped ? 'already exists, skipped' : 'created'}`);

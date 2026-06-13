@@ -1,0 +1,9 @@
+{
+  "name": "icon-picker",
+  "version": "1.0.0",
+  "strapi": {
+    "kind": "plugin",
+    "name": "icon-picker",
+    "displayName": "Icon Picker"
+  }
+}

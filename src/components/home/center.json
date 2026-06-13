@@ -1,0 +1,61 @@
+{
+  "collectionName": "components_home_centers",
+  "info": {
+    "displayName": "Center",
+    "icon": "house"
+  },
+  "options": {},
+  "attributes": {
+    "label": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "title": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "required": true,
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "content": {
+      "type": "customField",
+      "customField": "plugin::ckeditor5.CKEditor",
+      "required": true,
+      "options": {
+        "preset": "defaultHtml"
+      }
+    },
+    "values": {
+      "type": "component",
+      "component": "home.value",
+      "repeatable": true,
+      "required": false
+    },
+    "button": {
+      "type": "component",
+      "component": "home.button",
+      "repeatable": false,
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "image2": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    }
+  }
+}

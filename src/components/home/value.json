@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_home_values",
+  "info": {
+    "displayName": "Value",
+    "icon": "star"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::icon-picker.icon-picker",
+      "required": true
+    }
+  }
+}
