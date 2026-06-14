@@ -24,9 +24,12 @@ services:
       - .env
     ports:
       - '127.0.0.1:1337:1337'
+    volumes:
+      - uploads_data:/app/public/uploads
     depends_on:
       mysql:
         condition: service_started
 
 volumes:
   mysql_data:
+  uploads_data:
