@@ -13,7 +13,7 @@ fi
 
 if [ -z "${1:-}" ]; then
   echo "Usage: $0 <domain> [email]"
-  echo "  domain  — e.g. strapi.osteosalix.com"
+  echo "  domain  — e.g. cms.osteosalix.com"
   echo "  email   — (optional) for Let's Encrypt notifications"
   exit 1
 fi
@@ -34,7 +34,13 @@ if ! command -v docker &>/dev/null; then
 fi
 
 echo -e "${YELLOW}[3/7] Generating Strapi secrets...${NC}"
-ENV_FILE="$SCRIPT_DIR/.env.production"
+TEMPLATE_FILE="$SCRIPT_DIR/.env.production"
+ENV_FILE="$SCRIPT_DIR/.env"
+
+if [ ! -f "$ENV_FILE" ]; then
+  cp "$TEMPLATE_FILE" "$ENV_FILE"
+fi
+
 if grep -q '^APP_KEYS=$' "$ENV_FILE"; then
   APP_KEYS="$(openssl rand -hex 16),$(openssl rand -hex 16),$(openssl rand -hex 16),$(openssl rand -hex 16)"
   API_TOKEN_SALT=$(openssl rand -base64 32)
@@ -96,7 +102,7 @@ echo ""
 echo -e "${YELLOW}Next steps:${NC}"
 echo -e "1. Create admin user: docker exec -it osteosalix-strapi npm run console -- user:create --email=admin@osteosalix.com --password=..."
 echo -e "2. After seed completes, disable it for future restarts:"
-echo -e "     sed -i 's/^SEED_PRODUCTION=.*/SEED_PRODUCTION=false/' $ENV_FILE"
+echo -e "     sed -i 's/^SEED_PRODUCTION=.*/SEED_PRODUCTION=false/' $SCRIPT_DIR/.env"
 echo -e "3. Upload images via admin panel"
 echo -e "4. Configure webhook: Settings -> Webhooks -> URL: https://osteosalix.com/api/rebuild"
 echo -e "5. If certbot failed, run: certbot --nginx -d $DOMAIN"

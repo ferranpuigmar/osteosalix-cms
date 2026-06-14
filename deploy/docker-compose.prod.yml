@@ -16,12 +16,12 @@ services:
 
   strapi:
     build:
-      context: .
+      context: ..
       dockerfile: deploy/Dockerfile
     container_name: osteosalix-strapi
     restart: unless-stopped
     env_file:
-      - .env.production
+      - .env
     ports:
       - '127.0.0.1:1337:1337'
     depends_on:
