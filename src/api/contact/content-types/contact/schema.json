@@ -1,0 +1,78 @@
+{
+  "kind": "singleType",
+  "collectionName": "contacts",
+  "info": {
+    "singularName": "contact",
+    "pluralName": "contacts",
+    "displayName": "Contact",
+    "description": "Configuración de la sección de contacto y formulario"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "heading": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "phoneLabel": {
+      "type": "string",
+      "required": true
+    },
+    "email": {
+      "type": "string",
+      "required": true
+    },
+    "emailLabel": {
+      "type": "string",
+      "required": true
+    },
+    "fields": {
+      "type": "component",
+      "repeatable": true,
+      "required": true,
+      "min": 4,
+      "max": 4,
+      "component": "contact.form-field"
+    },
+    "checkboxText": {
+      "type": "text",
+      "required": true
+    },
+    "checkboxError": {
+      "type": "string",
+      "required": true
+    },
+    "submitLabel": {
+      "type": "string",
+      "required": true
+    },
+    "submitLoadingLabel": {
+      "type": "string",
+      "required": true
+    },
+    "successMessage": {
+      "type": "text",
+      "required": true
+    },
+    "errorMessage": {
+      "type": "text",
+      "required": true
+    },
+    "formEndpoint": {
+      "type": "string"
+    }
+  }
+}

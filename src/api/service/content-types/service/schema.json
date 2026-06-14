@@ -62,6 +62,12 @@
       "relation": "manyToOne",
       "target": "api::method.method",
       "inversedBy": "services"
+    },
+    "centers": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::center.center",
+      "inversedBy": "services"
     }
   }
 }

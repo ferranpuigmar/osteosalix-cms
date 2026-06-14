@@ -1,5 +1,22 @@
 import type { Schema, Struct } from '@strapi/strapi';
 
+export interface ContactFormField extends Struct.ComponentSchema {
+  collectionName: 'components_contact_form_fields';
+  info: {
+    displayName: 'Form Field';
+    icon: 'input';
+  };
+  attributes: {
+    field: Schema.Attribute.Enumeration<['name', 'email', 'phone', 'message']> &
+      Schema.Attribute.Required;
+    formatError: Schema.Attribute.String;
+    label: Schema.Attribute.String & Schema.Attribute.Required;
+    placeholder: Schema.Attribute.String & Schema.Attribute.Required;
+    requiredError: Schema.Attribute.String & Schema.Attribute.Required;
+    type: Schema.Attribute.Enumeration<['text', 'email', 'phone', 'textarea']>;
+  };
+}
+
 export interface HomeButton extends Struct.ComponentSchema {
   collectionName: 'components_home_buttons';
   info: {
@@ -62,6 +79,20 @@ export interface HomeHeroSection extends Struct.ComponentSchema {
     description: Schema.Attribute.Text & Schema.Attribute.Required;
     heroImage: Schema.Attribute.Media<'images'> & Schema.Attribute.Required;
     title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface HomePhilosophyItem extends Struct.ComponentSchema {
+  collectionName: 'components_home_philosophy_items';
+  info: {
+    displayName: 'Philosophy Item';
+    icon: 'check';
+  };
+  attributes: {
+    icon: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<'plugin::icon-picker.icon-picker'>;
+    text: Schema.Attribute.String & Schema.Attribute.Required;
   };
 }
 
@@ -137,9 +168,11 @@ export interface ServiceTreatment extends Struct.ComponentSchema {
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
+      'contact.form-field': ContactFormField;
       'home.button': HomeButton;
       'home.center': HomeCenter;
       'home.hero-section': HomeHeroSection;
+      'home.philosophy-item': HomePhilosophyItem;
       'home.value': HomeValue;
       'navigation.menu-group': NavigationMenuGroup;
       'navigation.menu-item': NavigationMenuItem;

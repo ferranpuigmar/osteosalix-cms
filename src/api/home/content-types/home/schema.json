@@ -36,6 +36,24 @@
       "relation": "oneToMany",
       "target": "api::service.service",
       "mappedBy": "home"
+    },
+    "philosophy": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::philosophy.philosophy",
+      "inversedBy": "homes"
+    },
+    "centersTitle": {
+      "type": "string"
+    },
+    "centersSubtitle": {
+      "type": "string"
+    },
+    "centers": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::center.center",
+      "mappedBy": "home"
     }
   }
 }

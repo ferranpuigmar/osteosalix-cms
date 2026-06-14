@@ -1,0 +1,9 @@
+node_modules
+.strapi
+dist
+.env
+build
+exports
+
+.git
+.DS_Store

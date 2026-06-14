@@ -440,6 +440,97 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCenterCenter extends Struct.CollectionTypeSchema {
+  collectionName: 'centers';
+  info: {
+    description: 'Centros f\u00EDsicos (cl\u00EDnicas)';
+    displayName: 'Center';
+    pluralName: 'centers';
+    singularName: 'center';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    address: Schema.Attribute.Text & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    galleryImages: Schema.Attribute.Media<'images', true>;
+    home: Schema.Attribute.Relation<'manyToOne', 'api::home.home'>;
+    hours: Schema.Attribute.String & Schema.Attribute.Required;
+    image: Schema.Attribute.Media<'images'>;
+    lat: Schema.Attribute.Float & Schema.Attribute.Required;
+    lng: Schema.Attribute.Float & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::center.center'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String & Schema.Attribute.Required;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    services: Schema.Attribute.Relation<'manyToMany', 'api::service.service'>;
+    slug: Schema.Attribute.UID<'name'> & Schema.Attribute.Required;
+    subtitle: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiContactContact extends Struct.SingleTypeSchema {
+  collectionName: 'contacts';
+  info: {
+    description: 'Configuraci\u00F3n de la secci\u00F3n de contacto y formulario';
+    displayName: 'Contact';
+    pluralName: 'contacts';
+    singularName: 'contact';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    checkboxError: Schema.Attribute.String & Schema.Attribute.Required;
+    checkboxText: Schema.Attribute.Text & Schema.Attribute.Required;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    email: Schema.Attribute.String & Schema.Attribute.Required;
+    emailLabel: Schema.Attribute.String & Schema.Attribute.Required;
+    errorMessage: Schema.Attribute.Text & Schema.Attribute.Required;
+    fields: Schema.Attribute.Component<'contact.form-field', true> &
+      Schema.Attribute.Required &
+      Schema.Attribute.SetMinMax<
+        {
+          max: 4;
+          min: 4;
+        },
+        number
+      >;
+    formEndpoint: Schema.Attribute.String;
+    heading: Schema.Attribute.String & Schema.Attribute.Required;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::contact.contact'
+    > &
+      Schema.Attribute.Private;
+    phone: Schema.Attribute.String & Schema.Attribute.Required;
+    phoneLabel: Schema.Attribute.String & Schema.Attribute.Required;
+    publishedAt: Schema.Attribute.DateTime;
+    submitLabel: Schema.Attribute.String & Schema.Attribute.Required;
+    submitLoadingLabel: Schema.Attribute.String & Schema.Attribute.Required;
+    subtitle: Schema.Attribute.String & Schema.Attribute.Required;
+    successMessage: Schema.Attribute.Text & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiHeaderHeader extends Struct.SingleTypeSchema {
   collectionName: 'headers';
   info: {
@@ -498,6 +589,9 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
         },
         number
       >;
+    centers: Schema.Attribute.Relation<'oneToMany', 'api::center.center'>;
+    centersSubtitle: Schema.Attribute.String;
+    centersTitle: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -513,6 +607,10 @@ export interface ApiHomeHome extends Struct.SingleTypeSchema {
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<'oneToMany', 'api::home.home'> &
       Schema.Attribute.Private;
+    philosophy: Schema.Attribute.Relation<
+      'manyToOne',
+      'api::philosophy.philosophy'
+    >;
     publishedAt: Schema.Attribute.DateTime;
     services: Schema.Attribute.Relation<'oneToMany', 'api::service.service'>;
     servicesSubtitle: Schema.Attribute.String;
@@ -585,6 +683,39 @@ export interface ApiNavigationNavigation extends Struct.SingleTypeSchema {
   };
 }
 
+export interface ApiPhilosophyPhilosophy extends Struct.CollectionTypeSchema {
+  collectionName: 'philosophies';
+  info: {
+    description: 'Secci\u00F3n de filosof\u00EDa para la home page';
+    displayName: 'Philosophy';
+    pluralName: 'philosophies';
+    singularName: 'philosophy';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    homes: Schema.Attribute.Relation<'oneToMany', 'api::home.home'>;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::philosophy.philosophy'
+    > &
+      Schema.Attribute.Private;
+    philosophyItems: Schema.Attribute.Component<'home.philosophy-item', true>;
+    publishedAt: Schema.Attribute.DateTime;
+    textureImage: Schema.Attribute.Media<'images'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
 export interface ApiServiceService extends Struct.CollectionTypeSchema {
   collectionName: 'services';
   info: {
@@ -598,6 +729,7 @@ export interface ApiServiceService extends Struct.CollectionTypeSchema {
   };
   attributes: {
     cardImage: Schema.Attribute.Media<'images'>;
+    centers: Schema.Attribute.Relation<'manyToMany', 'api::center.center'>;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -1136,10 +1268,13 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::center.center': ApiCenterCenter;
+      'api::contact.contact': ApiContactContact;
       'api::header.header': ApiHeaderHeader;
       'api::home.home': ApiHomeHome;
       'api::method.method': ApiMethodMethod;
       'api::navigation.navigation': ApiNavigationNavigation;
+      'api::philosophy.philosophy': ApiPhilosophyPhilosophy;
       'api::service.service': ApiServiceService;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;

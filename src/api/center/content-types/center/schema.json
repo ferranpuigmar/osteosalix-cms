@@ -1,0 +1,70 @@
+{
+  "kind": "collectionType",
+  "collectionName": "centers",
+  "info": {
+    "singularName": "center",
+    "pluralName": "centers",
+    "displayName": "Center",
+    "description": "Centros físicos (clínicas)"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "slug": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "subtitle": {
+      "type": "string",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "phone": {
+      "type": "string",
+      "required": true
+    },
+    "hours": {
+      "type": "string",
+      "required": true
+    },
+    "lat": {
+      "type": "float",
+      "required": true
+    },
+    "lng": {
+      "type": "float",
+      "required": true
+    },
+    "image": {
+      "type": "media",
+      "allowedTypes": ["images"],
+      "multiple": false
+    },
+    "galleryImages": {
+      "type": "media",
+      "allowedTypes": ["images"],
+      "multiple": true
+    },
+    "services": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::service.service",
+      "mappedBy": "centers"
+    },
+    "home": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::home.home",
+      "inversedBy": "centers"
+    }
+  }
+}

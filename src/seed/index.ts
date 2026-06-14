@@ -2,7 +2,10 @@ import { Core } from '@strapi/strapi';
 import { seed as seedMethod } from './seed-entities/method';
 import { seed as seedNavigation } from './seed-entities/navigation';
 import { seed as seedHeader } from './seed-entities/header';
+import { seed as seedContact } from './seed-entities/contact';
+import { seed as seedPhilosophy } from './seed-entities/philosophy';
 import { seed as seedServices } from './seed-entities/services';
+import { seed as seedCenters } from './seed-entities/centers';
 import { seed as seedHome } from './seed-entities/home';
 import { seed as seedToken } from './token';
 
@@ -16,10 +19,19 @@ export async function seed(strapi: Core.Strapi): Promise<void> {
   const header = await seedHeader(strapi, { navigationDocumentId: nav.documentId! });
   console.log(`[seed] header — ${header.skipped ? 'already exists, skipped' : 'created'}`);
 
+  const contact = await seedContact(strapi);
+  console.log(`[seed] contact — ${contact.skipped ? 'already exists, skipped' : 'created'}`);
+
+  const philosophy = await seedPhilosophy(strapi);
+  console.log(`[seed] philosophy — ${philosophy.skipped ? 'already exists, skipped' : 'created'}`);
+
   const services = await seedServices(strapi, { methodDocumentId: method.documentId });
   console.log(`[seed] services — ${services.skipped ? 'already exist, skipped' : `${services.documentIds?.length} created`}`);
 
-  const home = await seedHome(strapi, { serviceDocumentIds: services.documentIds });
+  const centers = await seedCenters(strapi, { serviceDocumentIds: services.documentIds });
+  console.log(`[seed] centers — ${centers.skipped ? 'already exist, skipped' : `${centers.documentIds?.length} created`}`);
+
+  const home = await seedHome(strapi, { serviceDocumentIds: services.documentIds, philosophyDocumentId: philosophy.documentId, centerDocumentIds: centers.documentIds });
   console.log(`[seed] home — ${home.skipped ? 'already exists, skipped' : 'created'}`);
 
   const token = await seedToken(strapi);

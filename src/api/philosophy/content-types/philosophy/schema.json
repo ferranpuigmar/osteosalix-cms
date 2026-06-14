@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "philosophies",
+  "info": {
+    "singularName": "philosophy",
+    "pluralName": "philosophies",
+    "displayName": "Philosophy",
+    "description": "Sección de filosofía para la home page"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    },
+    "textureImage": {
+      "type": "media",
+      "allowedTypes": ["images"],
+      "multiple": false
+    },
+    "philosophyItems": {
+      "type": "component",
+      "repeatable": true,
+      "component": "home.philosophy-item"
+    },
+    "homes": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::home.home",
+      "mappedBy": "philosophy"
+    }
+  }
+}

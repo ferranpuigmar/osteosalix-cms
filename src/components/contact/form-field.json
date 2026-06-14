@@ -1,0 +1,34 @@
+{
+  "collectionName": "components_contact_form_fields",
+  "info": {
+    "displayName": "Form Field",
+    "icon": "input"
+  },
+  "options": {},
+  "attributes": {
+    "field": {
+      "type": "enumeration",
+      "enum": ["name", "email", "phone", "message"],
+      "required": true
+    },
+    "type": {
+      "type": "enumeration",
+      "enum": ["text", "email", "phone", "textarea"]
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "placeholder": {
+      "type": "string",
+      "required": true
+    },
+    "requiredError": {
+      "type": "string",
+      "required": true
+    },
+    "formatError": {
+      "type": "string"
+    }
+  }
+}

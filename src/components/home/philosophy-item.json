@@ -1,0 +1,19 @@
+{
+  "collectionName": "components_home_philosophy_items",
+  "info": {
+    "displayName": "Philosophy Item",
+    "icon": "check"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::icon-picker.icon-picker",
+      "required": true
+    },
+    "text": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

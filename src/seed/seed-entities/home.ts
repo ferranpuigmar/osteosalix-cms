@@ -12,18 +12,27 @@ const CENTER_IMG2_PATH = path.join(process.cwd(), 'src', 'seed', 'images', 'cent
 
 export async function seed(
   strapi: Core.Strapi,
-  options?: { serviceDocumentIds?: string[] },
+  options?: { serviceDocumentIds?: string[]; philosophyDocumentId?: string; centerDocumentIds?: string[] },
 ): Promise<SeederResult> {
   const existing = await strapi.documents(UID).findFirst();
 
   if (existing && options?.serviceDocumentIds && options.serviceDocumentIds.length > 0) {
+    const updateData: Record<string, unknown> = {
+      servicesTitle: 'Nuestros servicios',
+      servicesSubtitle: 'Tratamientos que te transforman',
+      services: options.serviceDocumentIds,
+    };
+    if (options.philosophyDocumentId) {
+      updateData.philosophy = options.philosophyDocumentId;
+    }
+    if (options.centerDocumentIds && options.centerDocumentIds.length > 0) {
+      updateData.centersTitle = 'Nuestros centros';
+      updateData.centersSubtitle = 'Visítanos';
+      updateData.centers = options.centerDocumentIds;
+    }
     await strapi.documents(UID).update({
       documentId: existing.documentId,
-      data: {
-        servicesTitle: 'Nuestros servicios',
-        servicesSubtitle: 'Tratamientos que te transforman',
-        services: options.serviceDocumentIds,
-      } as any,
+      data: updateData as any,
     });
     return { skipped: true };
   }
@@ -75,6 +84,17 @@ export async function seed(
 
   if (options?.serviceDocumentIds && options.serviceDocumentIds.length > 0) {
     data.services = options.serviceDocumentIds;
+  }
+
+  if (options?.philosophyDocumentId) {
+    data.philosophy = options.philosophyDocumentId;
+  }
+
+  data.centersTitle = 'Nuestros centros';
+  data.centersSubtitle = 'Visítanos';
+
+  if (options?.centerDocumentIds && options.centerDocumentIds.length > 0) {
+    data.centers = options.centerDocumentIds;
   }
 
   await strapi.documents(UID).create({ data } as any);
