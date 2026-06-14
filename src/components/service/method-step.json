@@ -1,0 +1,22 @@
+{
+  "collectionName": "components_service_method_steps",
+  "info": {
+    "displayName": "Method Step",
+    "icon": "list"
+  },
+  "options": {},
+  "attributes": {
+    "num": {
+      "type": "string",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}

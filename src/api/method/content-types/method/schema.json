@@ -1,0 +1,26 @@
+{
+  "kind": "singleType",
+  "collectionName": "methods",
+  "info": {
+    "singularName": "method",
+    "pluralName": "methods",
+    "displayName": "Method",
+    "description": "Método de trabajo con 4 pasos compartido por todos los servicios"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "methodSteps": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service.method-step"
+    },
+    "services": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::service.service",
+      "mappedBy": "method"
+    }
+  }
+}

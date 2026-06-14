@@ -1,0 +1,67 @@
+{
+  "kind": "collectionType",
+  "collectionName": "services",
+  "info": {
+    "singularName": "service",
+    "pluralName": "services",
+    "displayName": "Service",
+    "description": "Servicios ofrecidos"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "title",
+      "required": true
+    },
+    "order": {
+      "type": "integer"
+    },
+    "cardImage": {
+      "type": "media",
+      "allowedTypes": ["images"],
+      "multiple": false
+    },
+    "titleImage": {
+      "type": "media",
+      "allowedTypes": ["images"],
+      "multiple": false
+    },
+    "descriptionHtml": {
+      "type": "text"
+    },
+    "treatments": {
+      "type": "component",
+      "repeatable": true,
+      "component": "service.treatment"
+    },
+    "ctaTitle": {
+      "type": "string"
+    },
+    "ctaDescription": {
+      "type": "text"
+    },
+    "home": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::home.home",
+      "inversedBy": "services"
+    },
+    "method": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::method.method",
+      "inversedBy": "services"
+    }
+  }
+}

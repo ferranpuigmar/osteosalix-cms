@@ -106,6 +106,34 @@ export interface NavigationMenuItem extends Struct.ComponentSchema {
   };
 }
 
+export interface ServiceMethodStep extends Struct.ComponentSchema {
+  collectionName: 'components_service_method_steps';
+  info: {
+    displayName: 'Method Step';
+    icon: 'list';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    num: Schema.Attribute.String & Schema.Attribute.Required;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
+export interface ServiceTreatment extends Struct.ComponentSchema {
+  collectionName: 'components_service_treatments';
+  info: {
+    displayName: 'Treatment';
+    icon: 'list';
+  };
+  attributes: {
+    description: Schema.Attribute.Text & Schema.Attribute.Required;
+    icon: Schema.Attribute.String &
+      Schema.Attribute.Required &
+      Schema.Attribute.CustomField<'plugin::icon-picker.icon-picker'>;
+    title: Schema.Attribute.String & Schema.Attribute.Required;
+  };
+}
+
 declare module '@strapi/strapi' {
   export module Public {
     export interface ComponentSchemas {
@@ -115,6 +143,8 @@ declare module '@strapi/strapi' {
       'home.value': HomeValue;
       'navigation.menu-group': NavigationMenuGroup;
       'navigation.menu-item': NavigationMenuItem;
+      'service.method-step': ServiceMethodStep;
+      'service.treatment': ServiceTreatment;
     }
   }
 }

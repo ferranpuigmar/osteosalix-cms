@@ -1,0 +1,23 @@
+{
+  "collectionName": "components_service_treatments",
+  "info": {
+    "displayName": "Treatment",
+    "icon": "list"
+  },
+  "options": {},
+  "attributes": {
+    "icon": {
+      "type": "customField",
+      "customField": "plugin::icon-picker.icon-picker",
+      "required": true
+    },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "description": {
+      "type": "text",
+      "required": true
+    }
+  }
+}
